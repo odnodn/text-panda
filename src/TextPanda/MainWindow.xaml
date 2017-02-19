@@ -12,6 +12,80 @@
     Height="600"
     Width="750">
     <Grid>
-
+        <ItemsControl>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <materialDesign:Card
+                Margin="10">
+                <StackPanel
+                    Margin="20,10,20,20"
+                    Orientation="Vertical">
+                    <TextBox
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        materialDesign:HintAssist.Hint="Shortcut"
+                        HorizontalAlignment="Left" />
+                    <TextBlock
+                        Margin="0,16,0,0"
+                        Style="{StaticResource MaterialDesignBody1TextBlock}"
+                        Text="Replace Mode"
+                        HorizontalAlignment="Left" />
+                    <StackPanel
+                        Margin="8,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="Auto"
+                            VerticalAlignment="Center" />
+                        <ToggleButton
+                            Margin="5,8,5,8"
+                            Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            ToolTip="Replace Mode" />
+                        <TextBlock
+                            Text="End-Character"
+                            ToolTip="End Characters: Space, Enter, Tab, -()[]{}:;'&quot; /\,.?!"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                    <Border
+                        Margin="0,8,0,0"
+                        BorderThickness="0,1,0,0"
+                        BorderBrush="{DynamicResource MaterialDesignDivider}" />
+                    <TextBox
+                        Margin="0,8,0,0"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        materialDesign:HintAssist.Hint="Replace with"
+                        AcceptsReturn="True" />
+                    <Button
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Left"
+                        Content="DELETE"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                </StackPanel>
+            </materialDesign:Card>
+            <materialDesign:Card
+                Padding="20"
+                Margin="10">
+                Hi
+            </materialDesign:Card>
+        </ItemsControl>
+        <materialDesign:TransitioningContent
+            Margin="20"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+            <Button
+                Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
+                ToolTip="Add New">
+                <Grid>
+                    <materialDesign:PackIcon
+                        Kind="Plus"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" />
+                </Grid>
+            </Button>
+        </materialDesign:TransitioningContent>
     </Grid>
 </Controls:MetroWindow>
