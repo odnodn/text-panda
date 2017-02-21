@@ -11,22 +11,26 @@
     Title="Text Panda"
     Height="600"
     Width="750">
-    <Grid>
-        <ItemsControl>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+    <Controls:MetroWindow.Resources>
+        <DataTemplate
+            x:Key="SnippetTemplate">
             <materialDesign:Card
                 Margin="10">
                 <StackPanel
                     Margin="20,10,20,20"
                     Orientation="Vertical">
-                    <TextBox
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        materialDesign:HintAssist.Hint="Shortcut"
-                        HorizontalAlignment="Left" />
+                    <Grid>
+                        <TextBox
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            materialDesign:HintAssist.Hint="Shortcut"
+                            HorizontalAlignment="Left"
+                            Text="{Binding Path=Shortcut}"/>
+                        <CheckBox
+                            Style="{StaticResource MaterialDesignCheckBox}"
+                            HorizontalAlignment="Right"
+                            ToolTip="Enable"
+                            IsChecked="{Binding Path=IsEnabled}"/>
+                    </Grid>
                     <TextBlock
                         Margin="0,16,0,0"
                         Style="{StaticResource MaterialDesignBody1TextBlock}"
@@ -44,6 +48,7 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             ToolTip="Replace Mode" />
+                        <!-- todo converter for bool to enum-->
                         <TextBlock
                             Text="End-Character"
                             ToolTip="End Characters: Space, Enter, Tab, -()[]{}:;'&quot; /\,.?!"
@@ -57,20 +62,33 @@
                         Margin="0,8,0,0"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         materialDesign:HintAssist.Hint="Replace with"
+                        Text="{Binding Path=ReplaceWith}"
                         AcceptsReturn="True" />
                     <Button
                         Margin="0,20,0,0"
                         HorizontalAlignment="Left"
                         Content="DELETE"
-                        Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                        CommandParameter="{Binding}"/>
                 </StackPanel>
             </materialDesign:Card>
-            <materialDesign:Card
-                Padding="20"
-                Margin="10">
-                Hi
-            </materialDesign:Card>
-        </ItemsControl>
+        </DataTemplate>
+    </Controls:MetroWindow.Resources>
+    <Grid>
+        <ScrollViewer
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl
+                ItemsSource="{Binding Path=Snippets}"
+                ItemTemplate="{StaticResource SnippetTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
         <materialDesign:TransitioningContent
             Margin="20"
             VerticalAlignment="Bottom"
@@ -78,10 +96,28 @@
             OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
             <Button
                 Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
-                ToolTip="Add New">
+                ToolTip="Add New"
+                Command="{Binding Path=AddCommand}">
                 <Grid>
                     <materialDesign:PackIcon
                         Kind="Plus"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" />
+                </Grid>
+            </Button>
+        </materialDesign:TransitioningContent>
+        <materialDesign:TransitioningContent
+            Margin="20"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
+            OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+            <Button
+                Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
+                ToolTip="Save"
+                Command="{Binding Path=SaveCommand}">
+                <Grid>
+                    <materialDesign:PackIcon
+                        Kind="ContentSave"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center" />
                 </Grid>

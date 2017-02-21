@@ -1,4 +1,6 @@
-﻿namespace TextPanda
+﻿using TextPanda.ViewModels;
+
+namespace TextPanda
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -8,6 +10,7 @@
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new SnippetsViewModel();
         }
     }
 }
