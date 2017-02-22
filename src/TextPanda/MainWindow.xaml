@@ -5,12 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:TextPanda"
+    xmlns:converters="clr-namespace:TextPanda.Converters"
     xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     mc:Ignorable="d"
     Title="Text Panda"
     Height="600"
-    Width="750">
+    Width="750"
+    GlowBrush="#444444"
+    BorderThickness="0">
     <Controls:MetroWindow.Resources>
         <DataTemplate
             x:Key="SnippetTemplate">
@@ -24,12 +27,13 @@
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             materialDesign:HintAssist.Hint="Shortcut"
                             HorizontalAlignment="Left"
-                            Text="{Binding Path=Shortcut}"/>
+                            Text="{Binding Path=Shortcut, UpdateSourceTrigger=PropertyChanged}"
+                            MaxLength="40" />
                         <CheckBox
                             Style="{StaticResource MaterialDesignCheckBox}"
                             HorizontalAlignment="Right"
                             ToolTip="Enable"
-                            IsChecked="{Binding Path=IsEnabled}"/>
+                            IsChecked="{Binding Path=IsEnabled}" />
                     </Grid>
                     <TextBlock
                         Margin="0,16,0,0"
@@ -47,8 +51,8 @@
                             Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            ToolTip="Replace Mode" />
-                        <!-- todo converter for bool to enum-->
+                            ToolTip="Replace Mode"
+                            IsChecked="{Binding Path=ReplaceMode, Converter={x:Static converters:EnumToBoolConverter.ReplaceModeEndCharacterToTrueConverter}, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock
                             Text="End-Character"
                             ToolTip="End Characters: Space, Enter, Tab, -()[]{}:;'&quot; /\,.?!"
@@ -62,15 +66,16 @@
                         Margin="0,8,0,0"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         materialDesign:HintAssist.Hint="Replace with"
-                        Text="{Binding Path=ReplaceWith}"
-                        AcceptsReturn="True" />
+                        Text="{Binding Path=ReplaceWith, UpdateSourceTrigger=PropertyChanged}"
+                        AcceptsReturn="True"
+                        MaxLength="5000" />
                     <Button
                         Margin="0,20,0,0"
                         HorizontalAlignment="Left"
                         Content="DELETE"
                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                        CommandParameter="{Binding}"/>
+                        CommandParameter="{Binding}" />
                 </StackPanel>
             </materialDesign:Card>
         </DataTemplate>

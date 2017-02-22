@@ -65,6 +65,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Reactive.Core, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Reactive.Core.3.1.1\lib\net45\System.Reactive.Core.dll</HintPath>
@@ -100,6 +101,10 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Validar, Version=1.4.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Validar.Fody.1.4.11.0\lib\dotnet\Validar.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -109,10 +114,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\EnumToBoolConverter.cs" />
     <Compile Include="Services\ISnippetService.cs" />
     <Compile Include="Services\SnippetService.cs" />
     <Compile Include="ViewModels\SnippetsViewModel.cs" />
     <Compile Include="Windows\DelegatingCommand.cs" />
+    <Compile Include="Windows\ValidationTemplate.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
