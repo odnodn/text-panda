@@ -80,53 +80,97 @@
             </materialDesign:Card>
         </DataTemplate>
     </Controls:MetroWindow.Resources>
-    <Grid>
-        <ScrollViewer
-            VerticalScrollBarVisibility="Auto"
-            HorizontalScrollBarVisibility="Disabled">
-            <ItemsControl
-                ItemsSource="{Binding Path=Snippets}"
-                ItemTemplate="{StaticResource SnippetTemplate}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </ScrollViewer>
-        <materialDesign:TransitioningContent
-            Margin="20"
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Right"
-            OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
-            <Button
-                Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
-                ToolTip="Add New"
-                Command="{Binding Path=AddCommand}">
-                <Grid>
-                    <materialDesign:PackIcon
-                        Kind="Plus"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center" />
-                </Grid>
-            </Button>
-        </materialDesign:TransitioningContent>
-        <materialDesign:TransitioningContent
-            Margin="20"
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Left"
-            OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
-            <Button
-                Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
-                ToolTip="Save"
-                Command="{Binding Path=SaveCommand}">
-                <Grid>
-                    <materialDesign:PackIcon
-                        Kind="ContentSave"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center" />
-                </Grid>
-            </Button>
-        </materialDesign:TransitioningContent>
-    </Grid>
+    <DockPanel
+        LastChildFill="True">
+        <Border
+            DockPanel.Dock="Top"
+            BorderThickness="0,0,0,1"
+            BorderBrush="#EBEBEB"
+            Background="#FAFAFA">
+            <materialDesign:Card
+                x:Name="SearchCard"
+                Margin="16,10,16,10"
+                HorizontalAlignment="Left"
+                Background="White">
+                <Border
+                    Background="Transparent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            Grid.Column="0"
+                            materialDesign:HintAssist.Hint="Search"
+                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                            Margin="8"
+                            MinWidth="200"
+                            VerticalAlignment="Center"
+                            BorderThickness="0" />
+                        <Button
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Style="{DynamicResource MaterialDesignToolButton}"
+                            Margin="8,0,8,0">
+                            <materialDesign:PackIcon
+                                Kind="Magnify"
+                                Height="24"
+                                Width="24" />
+                        </Button>
+                    </Grid>
+                </Border>
+            </materialDesign:Card>
+        </Border>
+        <Grid>
+            <ScrollViewer
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl
+                    ItemsSource="{Binding Path=Snippets}"
+                    ItemTemplate="{StaticResource SnippetTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+            <materialDesign:TransitioningContent
+                Margin="20"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+                <Button
+                    Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
+                    ToolTip="Add New"
+                    Command="{Binding Path=AddCommand}">
+                    <Grid>
+                        <materialDesign:PackIcon
+                            Kind="Plus"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                    </Grid>
+                </Button>
+            </materialDesign:TransitioningContent>
+            <materialDesign:TransitioningContent
+                Margin="20"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                OpeningEffect="{materialDesign:TransitionEffect ExpandIn}">
+                <Button
+                    Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
+                    ToolTip="Save"
+                    Command="{Binding Path=SaveCommand}">
+                    <Grid>
+                        <materialDesign:PackIcon
+                            Kind="ContentSave"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                    </Grid>
+                </Button>
+            </materialDesign:TransitioningContent>
+        </Grid>
+    </DockPanel>
 </Controls:MetroWindow>
