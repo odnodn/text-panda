@@ -87,41 +87,58 @@
             BorderThickness="0,0,0,1"
             BorderBrush="#EBEBEB"
             Background="#FAFAFA">
-            <materialDesign:Card
-                x:Name="SearchCard"
-                Margin="16,10,16,10"
-                HorizontalAlignment="Left"
-                Background="White">
-                <Border
-                    Background="Transparent">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition
-                                Width="*" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBox
-                            Grid.Column="0"
-                            materialDesign:HintAssist.Hint="Search"
-                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                            Margin="8"
-                            MinWidth="200"
-                            VerticalAlignment="Center"
-                            BorderThickness="0" />
-                        <Button
-                            Grid.Column="1"
-                            VerticalAlignment="Center"
-                            Style="{DynamicResource MaterialDesignToolButton}"
-                            Margin="8,0,8,0">
-                            <materialDesign:PackIcon
-                                Kind="Magnify"
-                                Height="24"
-                                Width="24" />
-                        </Button>
-                    </Grid>
-                </Border>
-            </materialDesign:Card>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+                <materialDesign:PackIcon
+                    Kind="Panda" 
+                    Grid.Column="0" 
+                    Margin="8,0,0,0"                    
+                    VerticalAlignment="Center"
+                    Height="45"
+                    Width="45"/>
+                <materialDesign:Card
+                    Grid.Column="1"
+                    x:Name="SearchCard"
+                    Margin="8,10,16,10"
+                    HorizontalAlignment="Left"
+                    Background="White">
+                    <Border
+                        Background="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox
+                                Grid.Column="0"
+                                materialDesign:HintAssist.Hint="Search"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                Margin="8"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                BorderThickness="0" />
+                            <Button
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource MaterialDesignToolButton}"
+                                Margin="8,0,8,0">
+                                <materialDesign:PackIcon
+                                    Kind="Magnify"
+                                    Height="24"
+                                    Width="24" />
+                            </Button>
+                        </Grid>
+                    </Border>
+                </materialDesign:Card>
+            </Grid>
+            
         </Border>
         <Grid>
             <ScrollViewer
@@ -170,6 +187,18 @@
                             VerticalAlignment="Center" />
                     </Grid>
                 </Button>
+            </materialDesign:TransitioningContent>
+            <materialDesign:TransitioningContent
+                OpeningEffect="{materialDesign:TransitionEffect Kind=FadeIn,Duration=0:0:1}"
+                OpeningEffectsOffset="0">
+                <materialDesign:Snackbar
+                    IsActive="True"
+                    x:Name="SnackbarOne"
+                    ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionLightButton}">
+                    <materialDesign:SnackbarMessage 
+                        Content="Deleted"
+                        ActionContent="UNDO"/>
+                </materialDesign:Snackbar>
             </materialDesign:TransitioningContent>
         </Grid>
     </DockPanel>
